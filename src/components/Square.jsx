@@ -2,8 +2,9 @@ var React = require('react');
 
 class Square extends React.Component {
     render() {
+        console.log(this.props.bomb);
         return (
-            <span className="square">&nbsp;</span>
+            <span onClick={this.props.onSquareClick} className="square">&nbsp;</span>
         );
     }
 }
