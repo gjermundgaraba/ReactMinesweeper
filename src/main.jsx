@@ -3,7 +3,7 @@ var GameBoard = require('./components/GameBoard.jsx');
 
 class Main extends React.Component {
     render() {
-        return <GameBoard />
+        return <GameBoard boardSize='10' />
     }
 }
 
