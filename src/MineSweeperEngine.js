@@ -3,12 +3,13 @@ class MineSweeperEngine {
     constructor(size) {
         var level = [];
 
-        for (var i = 0; i < size; ++i) {
+        for (var y = 0; y < size; ++y) {
             var row = [];
 
-            for (var j = 0; j < size; ++j) {
+            for (var x = 0; x < size; ++x) {
                 row.push({
-                    bomb: getRandomBomb()
+                    bomb: getRandomBomb(),
+                    open: false
                 });
             }
 
@@ -22,6 +23,10 @@ class MineSweeperEngine {
         }
     }
     getLevel() {
+        return this.level;
+    }
+    squareSelected(x, y) {
+        this.level[y][x].open = true;
         return this.level;
     }
 }

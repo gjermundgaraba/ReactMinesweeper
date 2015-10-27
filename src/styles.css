@@ -5,3 +5,11 @@
     background-color: #ccc;
     border: outset 3px #777;
 }
+
+.open {
+    background-color: #fff;
+}
+
+.open.bomb {
+    background-color: red;
+}
