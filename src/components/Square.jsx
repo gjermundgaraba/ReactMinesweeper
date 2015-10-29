@@ -11,7 +11,9 @@ class Square extends React.Component {
         } );
 
         return (
-            <span onClick={this.props.onSquareClick.bind(this, this.props.x, this.props.y)} className={classes}>&nbsp;</span>
+            <span onClick={this.props.onSquareClick.bind(this, this.props.x, this.props.y)} className={classes}>
+                {(this.props.open && this.props.numberOfBombsNear > 0 && !this.props.bomb) ? this.props.numberOfBombsNear : '\xa0'}
+            </span>
         );
     }
 }
