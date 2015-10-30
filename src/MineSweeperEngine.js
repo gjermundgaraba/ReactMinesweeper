@@ -1,6 +1,7 @@
 
 class MineSweeperEngine {
     constructor(size, numberOfMines) {
+        this.gameOver = false;
         this.size = size;
         var level = [];
 
@@ -60,18 +61,23 @@ class MineSweeperEngine {
         return this.level;
     }
     squareSelected(x, y) {
-        var square = this.level[y][x];
+        if (!this.gameOver) {
+            var square = this.level[y][x];
 
-        if (!square.open && !square.bomb && square.numberOfBombsNear === 0) {
-            square.open = true;
-            var nearSquareCoordinates = getNearSquareCoordinates(x, y, this.size);
-            for (var i = 0; i < nearSquareCoordinates.length; ++i) {
-                this.squareSelected(nearSquareCoordinates[i].x, nearSquareCoordinates[i].y);
+            if (!square.open && !square.bomb && square.numberOfBombsNear === 0) {
+                square.open = true;
+                var nearSquareCoordinates = getNearSquareCoordinates(x, y, this.size);
+                for (var i = 0; i < nearSquareCoordinates.length; ++i) {
+                    this.squareSelected(nearSquareCoordinates[i].x, nearSquareCoordinates[i].y);
+                }
+            } else {
+                square.open = true;
             }
-        } else {
-            square.open = true;
-        }
 
+            if (square.bomb) {
+                this.gameOver = true;
+            }
+        }
 
         return this.level;
     }

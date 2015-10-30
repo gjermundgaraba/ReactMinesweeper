@@ -48,7 +48,7 @@ gulp.task('clean', function () {
         .pipe(clean());
 });
 
-gulp.task('watch', function() {
+gulp.task('watch', ['compile'], function() {
     gulp.watch('src/**/*.*', ['compile']);
 });
 

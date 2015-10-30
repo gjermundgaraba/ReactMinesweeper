@@ -8,6 +8,8 @@ class GameBoard extends React.Component {
         this.NUMBER_OF_MINES = 40;
 
         this._handleSquareClick = this._handleSquareClick.bind(this);
+        this._resetGame = this._resetGame.bind(this);
+
         this.mineSweeperEngine = new MineSweeperEngine(this.BOARD_SIZE, this.NUMBER_OF_MINES);
         this.state = {
             level: this.mineSweeperEngine.getLevel()
@@ -15,9 +17,12 @@ class GameBoard extends React.Component {
     }
     render() {
         var rows = this.generateRows(this.state.level);
+
         return (
             <div>
+                <h1>Mine Sweeper</h1>
                 {rows}
+                <button onClick={this._resetGame}>Restart Game!</button>
             </div>
         );
     }
@@ -50,8 +55,13 @@ class GameBoard extends React.Component {
         var newLevel = this.mineSweeperEngine.squareSelected(x, y);
         this.setState({
             level: newLevel
-        })
-
+        });
+    }
+    _resetGame() {
+        this.mineSweeperEngine = new MineSweeperEngine(this.BOARD_SIZE, this.NUMBER_OF_MINES);
+        this.setState({
+            level: this.mineSweeperEngine.getLevel()
+        });
     }
 }
 
