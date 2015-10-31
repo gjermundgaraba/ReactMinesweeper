@@ -1,15 +1,23 @@
+body {
+    background-color: #BDA0CB;
+}
+
 .square {
     display: inline-block;
     height: 25px;
     width: 25px;
-    background-color: #ccc;
+    background-color: #71637D;
     border: outset 3px #777;
 }
 
 .open {
-    background-color: #fff;
+    background-color: #aaa;
 }
 
 .open.bomb {
     background-color: red;
+}
+
+.marked {
+    background-color: #cece00;
 }
