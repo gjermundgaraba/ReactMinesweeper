@@ -50,7 +50,11 @@ class GameBoard extends React.Component {
                     key={x.toString() + y.toString()}/>);
             }
 
-            rows.push(<div>{row}</div>);
+            rows.push(
+                <div>
+                    {row}
+                </div>
+            );
         }
 
         return rows;

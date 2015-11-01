@@ -10,8 +10,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "classnames": "^2.2.0",
-    "react": "0.13.3"
+    "classnames": "2.2.0",
+    "react": "0.14.0"
   },
   "devDependencies": {
     "browserify": "11.1.0",

@@ -93,7 +93,7 @@ class MineSweeperEngine {
             var square = this.game.level[y][x];
 
             if (!square.open) {
-                square.marked = true;
+                square.marked = !square.marked;
             }
 
             this.game.won = this.isGameWon();
