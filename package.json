@@ -11,7 +11,8 @@
   "license": "ISC",
   "dependencies": {
     "classnames": "2.2.0",
-    "react": "0.14.0"
+    "react": "0.14.0",
+    "react-dom": "^0.14.1"
   },
   "devDependencies": {
     "browserify": "11.1.0",

@@ -51,7 +51,7 @@ class GameBoard extends React.Component {
             }
 
             rows.push(
-                <div>
+                <div key={y}>
                     {row}
                 </div>
             );

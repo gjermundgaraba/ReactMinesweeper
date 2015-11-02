@@ -1,4 +1,5 @@
 var React = require('react');
+var ReactDOM = require('react-dom');
 var GameBoard = require('./components/GameBoard.jsx');
 
 class Main extends React.Component {
@@ -7,4 +8,4 @@ class Main extends React.Component {
     }
 }
 
-React.render(<Main />, document.body);
+ReactDOM.render(<Main />, document.getElementById("app-body"));
