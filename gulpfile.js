@@ -7,18 +7,12 @@ var buffer = require('vinyl-buffer');
 var gutil = require('gulp-util');
 var uglify = require('gulp-uglify');
 var sourcemaps = require('gulp-sourcemaps');
-var reactify = require('reactify');
 var watch = require('gulp-watch');
 var clean = require('gulp-clean');
 
 gulp.task('javascript', function () {
-    // set up the browserify instance on a task basis
-    var b = browserify({
-        entries: './src/main.jsx',
-        debug: true,
-        // defining transforms here will avoid crashing your stream
-        transform: [['reactify', {"es6": true}]]
-    });
+    var b = browserify('./src/main.jsx')
+        .transform("babelify", {presets: ["es2015", "react"]});
 
     return b.bundle()
         .pipe(source('bundle.js'))

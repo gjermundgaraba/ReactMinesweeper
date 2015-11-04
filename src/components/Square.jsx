@@ -4,6 +4,7 @@ var classNames = require( 'classnames' );
 
 class Square extends React.Component {
     constructor() {
+        super();
         this._contextClick = this._contextClick.bind(this);
     }
     render() {

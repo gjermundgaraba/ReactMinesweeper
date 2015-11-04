@@ -4,36 +4,30 @@ var MineSweeperEngine = require('../MineSweeperEngine.js');
 
 class GameBoard extends React.Component {
     constructor() {
-        this.BOARD_SIZE = 10;
-        this.NUMBER_OF_MINES = 5;
-
+        super();
         this._handleSquareClick = this._handleSquareClick.bind(this);
         this._handleSquareRightClick = this._handleSquareRightClick.bind(this);
-        this._resetGame = this._resetGame.bind(this);
-
-        this.mineSweeperEngine = new MineSweeperEngine(this.BOARD_SIZE, this.NUMBER_OF_MINES);
-        this.state = {
-            game: this.mineSweeperEngine.getGame()
-        };
+        this.resetGame = this.resetGame.bind(this);
+    }
+    componentWillMount() {
+        this.resetGame();
     }
     render() {
         var rows = this.generateRows(this.state.game.level);
 
         return (
             <div>
-                <h1>Minesweeper {this.state.game.won ? 'GAME WON!': ''} {this.state.game.over ? 'GAME OVER!': ''}</h1>
                 {rows}
-                <button onClick={this._resetGame}>Restart Game!</button>
             </div>
         );
     }
     generateRows(level) {
         var rows = [];
 
-        for (var y = 0; y < this.BOARD_SIZE; ++y) {
+        for (var y = 0; y < this.boardSize; ++y) {
             var row = [];
 
-            for (var x = 0; x < this.BOARD_SIZE; ++x) {
+            for (var x = 0; x < this.boardSize; ++x) {
                 var hasBomb = level[y][x].bomb;
                 var isOpen = level[y][x].open;
                 var isMarked = level[y][x].marked;
@@ -71,8 +65,10 @@ class GameBoard extends React.Component {
             game: updatedGame
         });
     }
-    _resetGame() {
-        this.mineSweeperEngine = new MineSweeperEngine(this.BOARD_SIZE, this.NUMBER_OF_MINES);
+    resetGame() {
+        this.boardSize = this.props.size;
+        this.numberOfMines = this.props.mines;
+        this.mineSweeperEngine = new MineSweeperEngine(this.boardSize, this.numberOfMines);
         this.setState({
             game: this.mineSweeperEngine.getGame()
         });
