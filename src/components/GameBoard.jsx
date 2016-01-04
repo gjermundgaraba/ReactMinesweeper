@@ -14,12 +14,27 @@ class GameBoard extends React.Component {
     }
     render() {
         var rows = this.generateRows(this.state.game.level);
+        var header = this.generateHeader(this.state.game);
 
         return (
             <div>
+                {header}
                 {rows}
             </div>
         );
+    }
+    generateHeader(game) {
+        var header;
+
+        if (game.over) {
+            if (game.won) {
+                header = <div>Game Won!</div>;
+            } else {
+                header = <div>Game Over! Game Lost!</div>;
+            }
+        }
+
+        return header;
     }
     generateRows(level) {
         var rows = [];

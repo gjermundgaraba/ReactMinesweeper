@@ -83,6 +83,9 @@ class MineSweeperEngine {
             }
 
             this.game.won = this.isGameWon();
+            if (this.game.won) {
+                this.game.over = true;
+            }
 
         }
 
@@ -97,27 +100,26 @@ class MineSweeperEngine {
             }
 
             this.game.won = this.isGameWon();
+            if (this.game.won) {
+                this.game.over = true;
+            }
         }
 
         return this.game;
     }
     isGameWon() {
-        if (!this.game.over) {
-            for (var y = 0; y < this.game.size; ++y) {
-                for (var x = 0; x < this.game.size; ++x) {
-                    var square = this.game.level[y][x];
-                    if (square.bomb && (square.open || !square.marked)) {
-                        return false;
-                    }
-                    if (!square.bomb && !square.open) {
-                        return false;
-                    }
+        for (var y = 0; y < this.game.size; ++y) {
+            for (var x = 0; x < this.game.size; ++x) {
+                var square = this.game.level[y][x];
+                if (square.bomb && (square.open || !square.marked)) {
+                    return false;
+                }
+                if (!square.bomb && !square.open) {
+                    return false;
                 }
             }
-            return true;
-        } else {
-            return false;
         }
+        return true;
     }
 }
 
