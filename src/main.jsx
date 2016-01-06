@@ -26,23 +26,49 @@ class Main extends React.Component {
         });
     }
     render() {
-        console.log('render');
         var gameBoardSize = this.state.gameBoardSize;
         var numberOfMines = this.state.numberOfMines;
+
+        var gameBoardSizeOptions = [];
+        for (var i = 4; i < 50; ++i) {
+            gameBoardSizeOptions.push(<option value={i} selected={gameBoardSize == i}>{i}</option>);
+        }
+
+        var numberOfMinesOptions = [];
+        for (var j = 4; j < 50; ++j) {
+            numberOfMinesOptions.push(<option value={j} selected={numberOfMines == j}>{j}</option>);
+        }
+
         return (
-            <div>
+            <div className="game-area">
                 <h1>Minesweeper</h1>
-                Game Board Size: <input type="number" value={gameBoardSize} onChange={this.handleGameBoardSizeChange} />
-                <br />
-                Number of Mines: <input type="number" value={numberOfMines} onChange={this.handleNumberOfMinesChange} />
-                <br />
-                <button onClick={this._resetGame}>Restart Game!</button>
+
+                <form className="pure-form pure-form-aligned">
+                    <div className="pure-control-group">
+                        <label for="gameBoardSizeSelect">Game Board Size </label>
+                        <select id="gameBoardSizeSelect" onChange={this.handleGameBoardSizeChange}>
+                            {gameBoardSizeOptions}
+                        </select>
+                    </div>
+
+                    <div className="pure-control-group">
+                        <label for="gameBoardMineNumberSelect">Number of Mines</label>
+                        <select id="gameBoardMineNumberSelect" onChange={this.handleNumberOfMinesChange}>
+                            {numberOfMinesOptions}
+                        </select>
+                    </div>
+
+                    <div className="pure-controls">
+                        <button type="button" className="pure-button pure-button-primary" onClick={this._resetGame}>Restart Game!</button>
+                    </div>
+
+                </form>
+
                 <GameBoard ref="gameboard" size={gameBoardSize} mines={numberOfMines} />
             </div>
         );
     }
     _resetGame() {
-        console.log(this.refs);
         this.refs.gameboard.resetGame();
     }
 }

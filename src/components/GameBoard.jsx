@@ -17,24 +17,28 @@ class GameBoard extends React.Component {
         var header = this.generateHeader(this.state.game);
 
         return (
-            <div>
+            <div className="">
                 {header}
                 {rows}
             </div>
         );
     }
     generateHeader(game) {
-        var header;
+        var headerText = "";
 
         if (game.over) {
             if (game.won) {
-                header = <div>Game Won!</div>;
+                headerText = "Game Won!";
             } else {
-                header = <div>Game Over! Game Lost!</div>;
+                headerText = "Game Over! Game Lost!";
             }
         }
 
-        return header;
+        return (
+            <h1 className="header">
+                {headerText}
+            </h1>
+        );
     }
     generateRows(level) {
         var rows = [];
