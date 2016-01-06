@@ -111,7 +111,7 @@ class MineSweeperEngine {
         for (var y = 0; y < this.game.size; ++y) {
             for (var x = 0; x < this.game.size; ++x) {
                 var square = this.game.level[y][x];
-                if (square.bomb && (square.open || !square.marked)) {
+                if (square.bomb && square.open) {
                     return false;
                 }
                 if (!square.bomb && !square.open) {
